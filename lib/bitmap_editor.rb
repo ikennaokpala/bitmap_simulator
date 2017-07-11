@@ -1,3 +1,5 @@
+require "matrix"
+
 class BitmapEditor
 
   def run(file)
@@ -7,7 +9,7 @@ class BitmapEditor
       line = line.chomp
       case line
       when "S"
-        puts "There is no image"
+        puts bitmap_image
       else
         puts "unrecognised command :("
       end
@@ -18,5 +20,10 @@ private
 
   def unavailable_file?(file)
     file.nil? || !File.exists?(file)
+  end
+
+  def bitmap_image(rows = 6, columns = 5)
+    pixels = Matrix.build(rows, columns){ "W" }.to_a
+    pixels.inject(nil) { |compiler, row| compiler = "#{compiler}#{row.join}\n" }
   end
 end

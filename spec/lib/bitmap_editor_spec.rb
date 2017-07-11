@@ -27,8 +27,10 @@ describe BitmapEditor do
         expect { subject.run(empty_file_path) }.to output("").to_stdout
       end
 
-      it "returns no image output if file with only 'S' command is supplied" do
-        expect { subject.run(s_file_path) }.to output(/There is no image/).to_stdout
+      it "returns image output if file with only 'S' command is supplied" do
+        expect { subject.run(s_file_path) }.to(
+          output(/WWWWW\nWWWWW\nWWWWW\nWWWWW\nWWWWW\nWWWWW\n/).to_stdout
+        )
       end
 
       it "returns unrecognised output if file with an unrecognised command is supplied" do
