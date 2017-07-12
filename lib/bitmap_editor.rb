@@ -22,8 +22,11 @@ private
     file.nil? || !File.exists?(file)
   end
 
-  def bitmap_image(rows = 6, columns = 5)
-    pixels = Matrix.build(rows, columns){ "W" }.to_a
+  def bitmap_image
     pixels.inject(nil) { |compiler, row| compiler = "#{compiler}#{row.join}\n" }
+  end
+
+  def pixels(rows = 6, columns = 5)
+    Matrix.build(rows, columns){ "W" }.to_a
   end
 end
