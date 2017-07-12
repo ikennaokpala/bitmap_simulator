@@ -1,5 +1,5 @@
-require "matrix"
 require_relative "./parser"
+require_relative "./bitmap"
 
 class BitmapEditor
 
@@ -10,7 +10,7 @@ class BitmapEditor
       directive = Parser.new(line.chomp)
       case directive.command
       when "S"
-        puts bitmap_image
+        puts Bitmap.new.image
       else
         puts "unrecognised command :("
       end
@@ -21,13 +21,5 @@ private
 
   def unavailable_file?(file)
     file.nil? || !File.exists?(file)
-  end
-
-  def bitmap_image
-    pixels.inject(nil) { |compiler, row| compiler = "#{compiler}#{row.join}\n" }
-  end
-
-  def pixels(rows = 6, columns = 5)
-    Matrix.build(rows, columns){ "W" }.to_a
   end
 end

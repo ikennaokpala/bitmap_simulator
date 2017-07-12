@@ -28,8 +28,11 @@ describe BitmapEditor do
       end
 
       it "returns image output if file with only 'S' command is supplied" do
+        allow_any_instance_of(Bitmap).to receive(:rows).and_return(2)
+        allow_any_instance_of(Bitmap).to receive(:columns).and_return(2)
+
         expect { subject.run(s_file_path) }.to(
-          output(/WWWWW\nWWWWW\nWWWWW\nWWWWW\nWWWWW\nWWWWW\n/).to_stdout
+          output(/OO\nOO\n/).to_stdout
         )
       end
 
