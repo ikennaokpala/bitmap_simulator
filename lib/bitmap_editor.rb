@@ -1,4 +1,5 @@
 require "matrix"
+require_relative "./parser"
 
 class BitmapEditor
 
@@ -6,8 +7,8 @@ class BitmapEditor
     return puts "please provide correct file" if unavailable_file?(file)
 
     File.open(file).each do |line|
-      cmd = cmd_parser(line.chomp)
-      case cmd.keys.first
+      directive = Parser.new(line.chomp)
+      case directive.command
       when "S"
         puts bitmap_image
       else
@@ -28,9 +29,5 @@ private
 
   def pixels(rows = 6, columns = 5)
     Matrix.build(rows, columns){ "W" }.to_a
-  end
-
-  def cmd_parser(line)
-    Hash[*line.split("", 2)]
   end
 end
