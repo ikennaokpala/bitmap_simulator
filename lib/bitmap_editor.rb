@@ -1,5 +1,6 @@
 require_relative "./parser"
 require_relative "./bitmap"
+require_relative "./create_image"
 
 class BitmapEditor
 
@@ -11,10 +12,7 @@ class BitmapEditor
       directive = Parser.new(line.chomp)
       case directive.command
       when "I"
-        bitmap.rows = directive.arguments.last.to_i
-        bitmap.columns = directive.arguments.first.to_i
-
-        bitmap.pixels
+        CreateImage.new(bitmap, directive.arguments).exec
       when "S"
         puts bitmap.image
       else
