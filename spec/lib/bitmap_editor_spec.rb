@@ -6,6 +6,7 @@ describe BitmapEditor do
     let(:unavailable_file_path) { fixtures_file_path("unavailable.txt") }
     let(:empty_file_path) { fixtures_file_path("empty.txt") }
     let(:s_file_path) { fixtures_file_path("s.txt") }
+    let(:i_file_path) { fixtures_file_path("i.txt") }
     let(:arbitrary_file_path) { fixtures_file_path("arbitrary.txt") }
 
     context "when commands file does not exists" do
@@ -25,6 +26,12 @@ describe BitmapEditor do
     context "when commands file exists" do
       it "returns empty output if empty file is supplied" do
         expect { subject.run(empty_file_path) }.to output("").to_stdout
+      end
+
+      it "creates a new M x N image coloured white (O) with 'I 2 2' directive" do
+        expect { subject.run(i_file_path) }.to(
+          output(/OO\nOO\n/).to_stdout
+        )
       end
 
       it "returns image output if file with only 'S' command is supplied" do

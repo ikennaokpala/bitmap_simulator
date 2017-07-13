@@ -9,7 +9,7 @@ class Bitmap
   end
 
   def pixels
-    @pixels = Matrix.build(rows.to_i, columns.to_i){ "O" }.to_a
+    @pixels ||= Matrix.build(rows.to_i, columns.to_i){ "O" }.to_a
   end
 
   def image
