@@ -7,8 +7,7 @@ class BitmapEditor
   def run(file)
     return puts "please provide correct file" if unavailable_file?(file)
 
-    bitmap = Bitmap.new
-    File.open(file).each do |line|
+    File.open(file).each_with_object(Bitmap.new) do |line, bitmap|
       directive = Parser.new(line.chomp)
       case directive.command
       when "I"
