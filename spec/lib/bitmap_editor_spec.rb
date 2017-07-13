@@ -7,6 +7,7 @@ describe BitmapEditor do
     let(:empty_file_path) { fixtures_file_path("empty.txt") }
     let(:s_file_path) { fixtures_file_path("s.txt") }
     let(:i_file_path) { fixtures_file_path("i.txt") }
+    let(:c_file_path) { fixtures_file_path("c.txt") }
     let(:l_file_path) { fixtures_file_path("l.txt") }
     let(:arbitrary_file_path) { fixtures_file_path("arbitrary.txt") }
 
@@ -32,6 +33,12 @@ describe BitmapEditor do
       it "creates a new M x N image coloured white (O) with 'I 2 2' directive" do
         expect { subject.run(i_file_path) }.to(
           output(/OO\nOO\n/).to_stdout
+        )
+      end
+
+      it "clears pixel table setting each pixel colour to white (O) with 'C' directive" do
+        expect { subject.run(c_file_path) }.to(
+          output(/OOOO\nOOOO\nOOOO\nOOOO\n/).to_stdout
         )
       end
 

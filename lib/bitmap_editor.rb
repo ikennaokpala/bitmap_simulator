@@ -2,6 +2,7 @@ require_relative "./parser"
 require_relative "./bitmap"
 require_relative "./create_image"
 require_relative "./colour_pixel"
+require_relative "./clear_table"
 
 class BitmapEditor
 
@@ -13,6 +14,8 @@ class BitmapEditor
       case directive.command
       when "I"
         CreateImage.new(bitmap, directive.arguments).exec
+      when "C"
+        ClearTable.new(bitmap).exec
       when "L"
         ColourPixel.new(bitmap, directive.arguments).exec
       when "S"
