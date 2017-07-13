@@ -11,10 +11,18 @@ describe CreateImage do
     end
 
     it "raises out of bounds exception if arguments are invalid" do
-      create_image = described_class.new(Bitmap.new, [])
+      create_image = described_class.new(Bitmap.new, [0, 251])
 
       expect{ create_image.exec }.to(
         raise_error(/out of bounds needs to be between 1 to 250/)
+      )
+    end
+
+    it "raises incomplete exception if arguments size is not equal to 2" do
+      create_image = described_class.new(Bitmap.new, [1])
+
+      expect{ create_image.exec }.to(
+        raise_error(/row and\/or columns have not been supplied/)
       )
     end
   end
