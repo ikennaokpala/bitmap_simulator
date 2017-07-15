@@ -4,6 +4,7 @@ require_relative "./create_image"
 require_relative "./colour_pixel"
 require_relative "./clear_table"
 require_relative "./draw_vertical"
+require_relative "./draw_horizontal"
 
 class BitmapEditor
 
@@ -21,6 +22,8 @@ class BitmapEditor
         ColourPixel.new(bitmap, directive.arguments).exec
       when "V"
         DrawVertical.new(bitmap, directive.arguments).exec
+      when "H"
+        DrawHorizontal.new(bitmap, directive.arguments).exec
       when "S"
         puts bitmap.image
       else

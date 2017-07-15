@@ -10,6 +10,7 @@ describe BitmapEditor do
     let(:c_file_path) { fixtures_file_path("c.txt") }
     let(:l_file_path) { fixtures_file_path("l.txt") }
     let(:v_file_path) { fixtures_file_path("v.txt") }
+    let(:h_file_path) { fixtures_file_path("h.txt") }
     let(:arbitrary_file_path) { fixtures_file_path("arbitrary.txt") }
 
     context "when commands file does not exists" do
@@ -52,6 +53,12 @@ describe BitmapEditor do
       it "draws a vertical segment of colour C. 'V 2 1 2 W' directive" do
         expect { subject.run(v_file_path) }.to(
           output(/OWO\nOWO\n/).to_stdout
+        )
+      end
+
+      it "draws a vertical segment of colour C. 'H 2 1 2 Z' directive" do
+        expect { subject.run(h_file_path) }.to(
+          output(/OOO\nZZO\n/).to_stdout
         )
       end
 
