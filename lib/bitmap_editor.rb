@@ -1,13 +1,13 @@
-require_relative "./parser"
-require_relative "./bitmap"
-require_relative "./incomplete_error"
-require_relative "./invalid_coordinates_error"
-require_relative "./base"
-require_relative "./create_image"
-require_relative "./colour_pixel"
-require_relative "./clear_table"
-require_relative "./draw_vertical"
-require_relative "./draw_horizontal"
+require "parser"
+require "bitmap"
+require "incomplete_error"
+require "invalid_coordinates_error"
+require "base"
+require "create_image"
+require "colour_pixel"
+require "clear_table"
+require "draw_vertical"
+require "draw_horizontal"
 
 class BitmapEditor
 

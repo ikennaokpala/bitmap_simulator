@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require "bundler"
+$LOAD_PATH.unshift("#{Bundler.root}/lib")
+require "bitmap_editor"
+
+BitmapEditor.new.run ARGV.first
