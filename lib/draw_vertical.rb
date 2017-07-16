@@ -1,7 +1,7 @@
 class DrawVertical
-  def initialize(bitmap, arguments)
+  def initialize(bitmap, coordinates_colours)
     @bitmap = bitmap
-    @arguments = arguments
+    @coordinates_colours = coordinates_colours
   end
 
   def exec
@@ -15,22 +15,16 @@ class DrawVertical
 
 private
 
-  def coordinates_colour
-    @coordinates_colour ||= Hash[[:coordinates, :colours].zip(
-      @arguments.partition { |arg| arg !~ /[A-Za-z]/ }
-    )]
-  end
-
   def colour
     @colour ||= (colours.first || "")
   end
 
   def colours
-    @colours ||= coordinates_colour.fetch(:colours)
+    @colours ||= @coordinates_colours.fetch(:colours)
   end
 
   def coordinates
-    @coordinates ||= coordinates_colour.fetch(:coordinates).map(&:to_i)
+    @coordinates ||= @coordinates_colours.fetch(:coordinates).map(&:to_i)
   end
 
   def column_index

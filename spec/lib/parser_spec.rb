@@ -26,13 +26,38 @@ describe Parser do
     end
   end
 
-  describe "#arguments" do
-    it "returns valid arguments" do
-      expect(subject.arguments).to match_array(["3", "2"])
+  describe "#coordinates_colours" do
+    context "for commands without colouring directive" do
+      it "returns valid coordinates and empty colours" do
+        expected = {coordinates: ["3", "2"], colours: [] }
+        expect(subject.coordinates_colours).to match_array(expected)
+      end
+
+      it "returns characters that make up the commands parameters" do
+        expect(subject.coordinates_colours.fetch(:coordinates).length).to equal(2)
+        expect(subject.coordinates_colours.fetch(:colours).length).to equal(0)
+      end
     end
 
-    it "returns characters that make up the commands parameters" do
-      expect(subject.arguments.length).to equal(2)
+    context "for commands with colouring directive" do
+      subject { Parser.new("L 3 2 A") }
+
+      it "returns valid coordinates and colours" do
+        expected = {coordinates: ["3", "2"], colours: ["A"] }
+        expect(subject.coordinates_colours).to match_array(expected)
+      end
+
+      it "returns characters that make up the commands parameters" do
+        expect(subject.coordinates_colours.fetch(:coordinates).length).to equal(2)
+        expect(subject.coordinates_colours.fetch(:colours).length).to equal(1)
+      end
+    end
+
+    it "generates coordinates and colours hash only once" do
+      expect(Hash).to receive(:[]).once.and_return({})
+
+      subject.coordinates_colours
+      subject.coordinates_colours
     end
   end
 end

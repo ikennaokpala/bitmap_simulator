@@ -15,15 +15,15 @@ class BitmapEditor
       directive = Parser.new(line.chomp)
       case directive.command
       when "I"
-        CreateImage.new(bitmap, directive.arguments).exec
+        CreateImage.new(bitmap, directive.coordinates_colours).exec
       when "C"
         ClearTable.new(bitmap).exec
       when "L"
-        ColourPixel.new(bitmap, directive.arguments).exec
+        ColourPixel.new(bitmap, directive.coordinates_colours).exec
       when "V"
-        DrawVertical.new(bitmap, directive.arguments).exec
+        DrawVertical.new(bitmap, directive.coordinates_colours).exec
       when "H"
-        DrawHorizontal.new(bitmap, directive.arguments).exec
+        DrawHorizontal.new(bitmap, directive.coordinates_colours).exec
       when "S"
         puts bitmap.image
       else

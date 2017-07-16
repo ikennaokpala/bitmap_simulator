@@ -11,7 +11,9 @@ class Parser
     fragments.first.strip
   end
 
-  def arguments
-    fragments.last.strip.split(" ")
+  def coordinates_colours
+    @coordinates_colours ||= Hash[[:coordinates, :colours].zip(
+      fragments.last.strip.split(" ").partition { |arg| arg !~ /[A-Z]/ }
+    )]
   end
 end
