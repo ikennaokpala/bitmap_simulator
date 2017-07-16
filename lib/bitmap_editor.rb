@@ -1,5 +1,6 @@
 require_relative "./parser"
 require_relative "./bitmap"
+require_relative "./base"
 require_relative "./create_image"
 require_relative "./colour_pixel"
 require_relative "./clear_table"
