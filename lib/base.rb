@@ -5,8 +5,8 @@ class Base
   end
 
   def exec
-    raise "row and/or columns have not been supplied" if incomplete?
-    raise "out of bounds needs to be between 1 to 250" if invalid_coordinates?
+    raise InCompleteError if incomplete?
+    raise InvalidCoordinatesError if invalid_coordinates?
   end
 
 private

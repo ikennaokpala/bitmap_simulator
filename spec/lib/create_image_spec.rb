@@ -16,7 +16,10 @@ describe CreateImage do
       create_image = described_class.new(Bitmap.new, coordinates_colours)
 
       expect{ create_image.exec }.to(
-        raise_error(/out of bounds needs to be between 1 to 250/)
+        raise_error(
+          InvalidCoordinatesError,
+          /InvalidCoordinates Error: Out of bounds needs to be between 1 to 250/
+        )
       )
     end
 
@@ -25,7 +28,10 @@ describe CreateImage do
       create_image = described_class.new(Bitmap.new, coordinates_colours)
 
       expect{ create_image.exec }.to(
-        raise_error(/row and\/or columns have not been supplied/)
+        raise_error(
+          InCompleteError,
+          /InComplete Error: Row and\/or columns have not been supplied/
+        )
       )
     end
   end

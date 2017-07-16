@@ -1,5 +1,7 @@
 require_relative "./parser"
 require_relative "./bitmap"
+require_relative "./incomplete_error"
+require_relative "./invalid_coordinates_error"
 require_relative "./base"
 require_relative "./create_image"
 require_relative "./colour_pixel"
